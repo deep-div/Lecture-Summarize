@@ -33,7 +33,7 @@ This tool allows users to:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/lecture-summarizer.git
+git clone https://github.com/deep-div/Lecture-Summarize.git
 cd lecture-summarizer
 ```
 
