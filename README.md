@@ -1,5 +1,7 @@
 # 📘 Lecture Summarizer
 
+![screenshot](https://github.com/user-attachments/assets/35abd353-680d-4b1f-96f6-152bb7b6c75a)
+
 **Lecture Summarizer** is a streamlined tool designed to automatically convert lecture audio into concise, structured summaries. By leveraging state-of-the-art speech-to-text and natural language processing models, this tool enhances productivity for students, educators, and professionals who rely on spoken content.
 
 ---
@@ -69,4 +71,4 @@ Let me know if you’d like a version tailored for a specific framework (e.g., S
 
 
 
-![screenshot](https://github.com/user-attachments/assets/35abd353-680d-4b1f-96f6-152bb7b6c75a)
+
