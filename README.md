@@ -4,7 +4,7 @@
 
 **Lecture Summarizer** is a streamlined tool designed to automatically convert lecture audio into concise, structured summaries. By leveraging state-of-the-art speech-to-text and natural language processing models, this tool enhances productivity for students, educators, and professionals who rely on spoken content.
     
---- 
+---  
  
 ## 🔍 Overview 
 
