@@ -40,4 +40,6 @@ jobs:
           GIT_COMMITTER_DATE="$RANDOM_TIME" \
           git commit -m "Weekday random-time update" || echo "No changes"
 
-          git push
+          git pull --rebase origin main
+          git push origin main
+
