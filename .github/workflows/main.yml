@@ -5,11 +5,16 @@ permissions:
 
 on:
   schedule:
-    - cron: '0 0 * * 1-5'   # Runs once per day (00:00 UTC) Mon–Fri
+    - cron: '0 0 * * 1-5'   # Mon–Fri at 00:00 UTC
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   random_push:
+    # Prevent infinite loop (do not run if last commit was from this workflow)
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     steps:
