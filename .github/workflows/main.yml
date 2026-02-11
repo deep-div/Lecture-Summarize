@@ -1,8 +1,11 @@
 name: Weekday Random Push
 
+permissions:
+  contents: write
+
 on:
   schedule:
-    - cron: '0 0 * * 1-5'   # Runs once per day (00:00 UTC) Mon–Fri
+    - cron: '0 0 * * 1-5'
   push:
     branches:
       - main
@@ -18,14 +21,9 @@ jobs:
 
       - name: Generate Random Time Today
         run: |
-          # Random hour (0–23)
           HOUR=$((RANDOM % 24))
-
-          # Random minute (0–59)
           MINUTE=$((RANDOM % 60))
-
           RANDOM_TIME=$(date -d "$HOUR:$MINUTE" +"%Y-%m-%d %H:%M:%S")
-
           echo "RANDOM_TIME=$RANDOM_TIME" >> $GITHUB_ENV
 
       - name: Make Change
@@ -40,6 +38,6 @@ jobs:
           git add .
           GIT_AUTHOR_DATE="$RANDOM_TIME" \
           GIT_COMMITTER_DATE="$RANDOM_TIME" \
-          git commit -m "Weekday random-time update"
+          git commit -m "Weekday random-time update" || echo "No changes"
 
           git push
