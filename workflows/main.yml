@@ -1,0 +1,42 @@
+name: Weekday Random Push
+
+on:
+  schedule:
+    - cron: '0 0 * * 1-5'   # Runs once per day (00:00 UTC) Mon–Fri
+  workflow_dispatch:
+
+jobs:
+  random_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Generate Random Time Today
+        run: |
+          # Random hour (0–23)
+          HOUR=$((RANDOM % 24))
+
+          # Random minute (0–59)
+          MINUTE=$((RANDOM % 60))
+
+          RANDOM_TIME=$(date -d "$HOUR:$MINUTE" +"%Y-%m-%d %H:%M:%S")
+
+          echo "RANDOM_TIME=$RANDOM_TIME" >> $GITHUB_ENV
+
+      - name: Make Change
+        run: |
+          echo "Updated at $RANDOM_TIME" >> daily_log.txt
+
+      - name: Commit and Push
+        run: |
+          git config user.name "deep-div"
+          git config user.email "div20023041@gmail.com"
+
+          git add .
+          GIT_AUTHOR_DATE="$RANDOM_TIME" \
+          GIT_COMMITTER_DATE="$RANDOM_TIME" \
+          git commit -m "Weekday random-time update"
+
+          git push
