@@ -3,6 +3,9 @@ name: Weekday Random Push
 on:
   schedule:
     - cron: '0 0 * * 1-5'   # Runs once per day (00:00 UTC) Mon–Fri
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
