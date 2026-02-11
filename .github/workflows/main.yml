@@ -5,10 +5,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '0 0 * * 1-5'
-  push:
-    branches:
-      - main
+    - cron: '0 0 * * 1-5'   # Runs once per day (00:00 UTC) Mon–Fri
   workflow_dispatch:
 
 jobs:
@@ -16,15 +13,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo
+      - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - name: Generate Random Time Today
+      - name: Generate Random Time
         run: |
           HOUR=$((RANDOM % 24))
           MINUTE=$((RANDOM % 60))
           RANDOM_TIME=$(date -d "$HOUR:$MINUTE" +"%Y-%m-%d %H:%M:%S")
           echo "RANDOM_TIME=$RANDOM_TIME" >> $GITHUB_ENV
+
+      - name: Sync With Latest Main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
 
       - name: Make Change
         run: |
@@ -35,11 +39,9 @@ jobs:
           git config user.name "deep-div"
           git config user.email "div20023041@gmail.com"
 
-          git add .
+          git add daily_log.txt
           GIT_AUTHOR_DATE="$RANDOM_TIME" \
           GIT_COMMITTER_DATE="$RANDOM_TIME" \
-          git commit -m "Weekday random-time update" || echo "No changes"
+          git commit -m "Weekday random-time update"
 
-          git pull --rebase origin main
           git push origin main
-
