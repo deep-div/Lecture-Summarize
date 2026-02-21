@@ -5,7 +5,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '0 0 * * 1-5'   # Mon–Fri at 00:00 UTC
+    - cron: '0 0 * * 1-6'  
   push:
     branches:
       - main
