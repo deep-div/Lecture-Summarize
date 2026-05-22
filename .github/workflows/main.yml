@@ -4,11 +4,6 @@ permissions:
   contents: write
 
 on:
-  schedule:
-    - cron: '0 0 * * 1-6'  
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
